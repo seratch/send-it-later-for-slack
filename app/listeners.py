@@ -3,7 +3,7 @@ import json
 from logging import Logger
 from typing import Optional, Callable
 
-from slack_bolt import App, Ack, BoltContext
+from slack_bolt import App, Ack, BoltContext, Respond
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
 from slack_sdk.oauth import InstallationStore
@@ -64,7 +64,7 @@ def register_listeners(
             message.get("attachments"),
             message.get("blocks"),
         )
-        message = {"text": text, "channel": context.channel_id}
+        message = {"text": text, "response_url": context.response_url}
         if attachments is not None:
             message["attachments"] = attachments
         if blocks is not None:
@@ -163,17 +163,21 @@ def register_listeners(
             )
             ack()
 
-            update_home_tab(client, context, tz_offset)
-
-            if message.get("channel"):
+            if message.get("response_url"):
+                respond = Respond(response_url=message.get("response_url"))
                 time = datetime.datetime.fromtimestamp(
                     result["post_at"], tz=tz_info(tz_offset)
                 )
-                client.chat_postEphemeral(
-                    channel=message.get("channel"),
-                    user=context.user_id,
-                    text=f"_The message is scheduled to post in <#{result['channel']}> at {time}_",
+                app_id = client.bots_info(bot=context.bot_id)["bot"]["app_id"]
+                home_tab_link = (
+                    f"slack://app?team={context.team_id}&id={app_id}&tab=home"
                 )
+                respond(
+                    f"_The message is scheduled to post in <#{result['channel']}> at {time}_\n"
+                    f":point_right: _Check <{home_tab_link}|all your scheduled messages>_"
+                )
+
+            update_home_tab(client, context, tz_offset)
 
         except SlackApiError as e:
             if e.response["error"] == "not_in_channel":

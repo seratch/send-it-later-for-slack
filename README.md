@@ -17,8 +17,8 @@
     * `token_revoked`
 * OAuth & Permissions
   * Bot Token Scopes
-    * `chat:write`
     * `commands`
+    * `users:read`
   * User Token Scopes
     * `chat:write`
     * `users:read`
