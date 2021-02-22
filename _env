@@ -1,0 +1,16 @@
+# OAuth App
+APP_INSTALL_URL=https://send-it-later.ngrok.io/slack/install
+SLACK_CLIENT_ID=
+SLACK_CLIENT_SECRET=
+SLACK_SIGNING_SECRET=
+SLACK_SCOPES=commands,at:write
+SLACK_USER_SCOPES=chat:write,users:read
+PORT=3000
+DATABASE_URL=postgresql://user:pass@db:5432/send_it_later
+
+# Single Workspace App
+#SLACK_BOT_TOKEN=
+#SLACK_USER_TOKEN=
+
+# Socket Mode
+#SLACK_APP_TOKEN=
