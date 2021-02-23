@@ -49,7 +49,7 @@ heroku pg:backups:restore ${presign url} DATABASE_URL
 heroku config:set SLACK_CLIENT_ID=
 heroku config:set SLACK_CLIENT_SECRET=
 heroku config:set SLACK_SIGNING_SECRET=
-heroku config:set SLACK_SCOPES=commands,chat:write
+heroku config:set SLACK_SCOPES=commands,users:read
 heroku config:set SLACK_USER_SCOPES=chat:write,users:read
 
 git add . -v
