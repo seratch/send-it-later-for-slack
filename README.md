@@ -1,7 +1,6 @@
 ### Demo
 
-<img src="https://user-images.githubusercontent.com/19658/108726398-b8106f00-756a-11eb-8252-7aaf2d2ea66a.gif" width=600>
-<img src="https://user-images.githubusercontent.com/19658/108726282-944d2900-756a-11eb-9628-ecc324d2d609.gif" width=600>
+<img src="https://user-images.githubusercontent.com/19658/108788304-02b9d780-75bb-11eb-96ed-8d76e3a37db2.gif" width=500>
 
 ### Slack App Settings
 
